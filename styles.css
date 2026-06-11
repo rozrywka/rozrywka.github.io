@@ -46,7 +46,6 @@ h1, h2 { font-family: Fraunces, serif; }
   color: #fff;
   padding: 4.75rem 0 6.5rem;
   margin-bottom: 2rem;
-  max-width: 760px;
   background: rgba(15, 24, 22, 0.36);
   border: 1px solid rgba(255, 255, 255, 0.24);
   border-radius: 24px;
@@ -54,6 +53,9 @@ h1, h2 { font-family: Fraunces, serif; }
   -webkit-backdrop-filter: blur(4px);
   padding-left: clamp(1rem, 3vw, 2rem);
   padding-right: clamp(1rem, 3vw, 2rem);
+}
+@media (max-width: 759px) {
+  .hero__content { max-width: 92%; padding-top: 3rem; padding-bottom: 4rem; }
 }
 .hero__content h1 { font-size: clamp(1.8rem, 5vw, 3.2rem); margin-bottom: .8rem; max-width: 14ch; }
 .hero__content h1,
@@ -156,20 +158,49 @@ input:focus, textarea:focus { outline: 2px solid #bed2c4; border-color: var(--ac
   .slots { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 
-/* === Symulacja kosztów najmu === */
-.table-wrap { overflow-x: auto; margin: 1.4rem 0; border-radius: var(--radius); box-shadow: var(--shadow); }
-.cost-table { width: 100%; border-collapse: collapse; background: var(--surface); font-size: .95rem; min-width: 640px; }
-.cost-table th, .cost-table td { padding: .62rem .8rem; text-align: right; border-bottom: 1px solid #e4e9e7; }
-.cost-table thead th { background: var(--accent); color: #fff; text-align: center; vertical-align: top; }
-.cost-table thead small { font-weight: 500; opacity: .85; }
-.cost-table tbody th { text-align: left; font-weight: 600; color: var(--muted); white-space: nowrap; }
-.cost-table tbody tr:nth-child(even) { background: #f7faf8; }
-.cost-table .row-sep th, .cost-table .row-sep td { border-top: 2px solid #cdd8d2; }
-.cost-table .row-media th, .cost-table .row-media td { font-weight: 700; background: #eef5f0; }
-.cost-table .row-total th, .cost-table .row-total td { font-weight: 800; background: #e2efe6; color: #1d4028; font-size: 1.02rem; }
-.cost-summary { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); padding: 1.2rem 1.4rem; }
-.cost-summary h3 { margin-bottom: .5rem; }
-.cost-summary p { margin: 0; }
+/* === Kalkulator kosztów === */
+.analytics {
+  --panel: rgba(255, 255, 255, 0.7);
+  --panel-border: rgba(34, 49, 45, 0.12);
+  --text-soft: #5a6665;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.72), rgba(231, 237, 234, 0.6));
+  border: 1px solid var(--panel-border);
+  box-shadow: 0 24px 50px rgba(21, 31, 30, 0.14);
+  border-radius: 28px;
+  padding: clamp(1rem, 3vw, 2rem);
+}
+.eyebrow-dark { text-transform: uppercase; letter-spacing: .08em; font-size: .76rem; color: var(--text-soft); margin: 0 0 .4rem; }
+.analytics__head, .analytics__controls, .kpi-grid { display: grid; gap: 1.2rem; }
+.analytics__head { margin-bottom: 1rem; }
+.analytics select { width: 100%; margin-top: .45rem; border-radius: 12px; border: 1px solid var(--panel-border); padding: .62rem .75rem; background: var(--panel); accent-color: var(--accent); }
+.analytics label { font-weight: 700; color: var(--text-soft); }
+.kpi-grid { margin: 1.2rem 0; }
+.kpi, .chart-card, .insight {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 18px;
+  padding: 1.1rem;
+  margin: .2rem 0;
+}
+.kpi p { margin: 0; color: var(--text-soft); }
+.kpi strong { font-size: 1.55rem; display: block; margin: .2rem 0; }
+.kpi small { color: var(--text-soft); }
+.bars { display: grid; gap: .66rem; }
+.bar { --w: 0%; --c: #ccc; }
+.bar__top { display: flex; justify-content: space-between; font-size: .9rem; }
+.bar__track { height: 10px; border-radius: 999px; background: rgba(127, 145, 142, 0.26); overflow: hidden; }
+.bar__fill { width: var(--w); background: var(--c); height: 100%; border-radius: inherit; transition: width .7s cubic-bezier(.2,.8,.2,1); }
+.insight p { margin: 0; }
+@media (min-width: 860px) {
+  .analytics__controls { grid-template-columns: 1fr 1fr; }
+  .kpi-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* === Akcje mapy i nota przy imieniu === */
+.map-actions { display: flex; gap: .7rem; flex-wrap: wrap; }
+.map-actions .btn i { margin-right: .35rem; }
+.field-note { color: var(--muted); font-size: .85rem; line-height: 1.45; }
+.field-note i { color: var(--accent); margin-right: .25rem; }
 
 /* === Captcha i status formularza === */
 .captcha label { font-weight: 600; }
