@@ -1,3 +1,2 @@
 # Terminy
 
-- 2026-06-11 18:00 — Wojciech
