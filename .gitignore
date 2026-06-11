@@ -1,0 +1,8 @@
+# Pliki prywatne / robocze — nie publikować w publicznym repo
+WDROZENIE.md
+/*.jpg
+team-members-*
+*.ps1
+booked-slots.json
+.DS_Store
+.claude/
