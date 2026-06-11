@@ -9,6 +9,29 @@
   --shadow: 0 12px 28px rgba(23, 35, 33, 0.12);
 }
 * { box-sizing: border-box; }
+.availability-bar {
+  background: var(--accent);
+  color: #fff;
+  text-align: center;
+  padding: .55rem 1rem;
+  font-weight: 700;
+  font-size: .95rem;
+  letter-spacing: .01em;
+}
+.availability-bar .dot {
+  display: inline-block;
+  width: .6rem;
+  height: .6rem;
+  border-radius: 50%;
+  background: #b7f7c3;
+  margin-right: .45rem;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(183, 247, 195, .7); }
+  70% { box-shadow: 0 0 0 8px rgba(183, 247, 195, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(183, 247, 195, 0); }
+}
 body {
   margin: 0;
   font-family: Manrope, sans-serif;
@@ -142,8 +165,6 @@ input:focus, textarea:focus { outline: 2px solid #bed2c4; border-color: var(--ac
 .booking-status, .form-note { color: var(--muted); font-size: .95rem; }
 .footer { background: #17201f; color: #dde5e3; padding: 2.1rem 0; }
 .footer a { color: #fff; }
-.socials { display: flex; gap: .8rem; }
-.socials a { color: #fff; opacity: .85; }
 .lightbox { position: fixed; inset: 0; display: none; background: rgba(8, 14, 13, .92); z-index: 100; justify-content: center; align-items: center; padding: 1rem; }
 .lightbox.active { display: flex; }
 .lightbox img { width: min(96vw, 1200px); max-height: 88vh; object-fit: contain; border-radius: 14px; }

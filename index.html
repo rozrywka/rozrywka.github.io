@@ -28,6 +28,10 @@
   <script defer src="script.js"></script>
 </head>
 <body>
+  <div class="availability-bar" role="status">
+    <span class="dot" aria-hidden="true"></span>
+    Oferta aktualna — mieszkanie nadal do wynajęcia
+  </div>
   <header class="hero" id="start">
     <div class="hero__overlay"></div>
     <img src="assets/images/hero.jpg" alt="Salon mieszkania na wynajem w Krakowie" class="hero__bg" loading="eager" decoding="async" fetchpriority="high" />
@@ -44,23 +48,6 @@
   </header>
 
   <main>
-    <section class="section container fade-in" id="mapa-google">
-      <h2>Gdzie znajduje się mieszkanie</h2>
-      <p>ul. Rozrywki 24, Kraków – Prądnik Czerwony</p>
-      <div class="google-map">
-        <iframe
-          src="https://maps.google.com/maps?q=50.09270884862374,19.97626877081445&z=16&hl=pl&output=embed"
-          title="Mapa Google – ul. Rozrywki 24, Kraków"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          allowfullscreen></iframe>
-      </div>
-      <p class="map-actions">
-        <a class="btn" href="https://www.google.com/maps/search/?api=1&query=50.09270884862374%2C19.97626877081445" target="_blank" rel="noopener"><i class="fa-solid fa-map-location-dot"></i> Otwórz w Google Maps</a>
-        <a class="btn" href="https://www.google.com/maps/dir/?api=1&destination=50.09270884862374%2C19.97626877081445" target="_blank" rel="noopener"><i class="fa-solid fa-route"></i> Wyznacz trasę</a>
-      </p>
-    </section>
-
     <section class="section container fade-in" id="mieszkanie">
       <h2>O mieszkaniu</h2>
       <div class="info-grid">
@@ -73,9 +60,12 @@
         <article><i class="fa-solid fa-user-check"></i><span>Wynajem bezpośrednio od właściciela</span></article>
         <article><i class="fa-solid fa-key"></i><span>Dostępne od zaraz</span></article>
         <article><i class="fa-solid fa-paw"></i><span>Zgoda na małego zwierzaka</span></article>
+        <article><i class="fa-solid fa-square-parking"></i><span>Publiczny parking pod blokiem</span></article>
+        <article><i class="fa-solid fa-temperature-arrow-up"></i><span>Ogrzewanie miejskie (MPEC) — wliczone w czynsz</span></article>
+        <article><i class="fa-solid fa-file-signature"></i><span>Minimalny okres umowy: 1 rok</span></article>
+        <article><i class="fa-solid fa-calendar-xmark"></i><span>Wypowiedzenie zgodnie z warunkami umowy</span></article>
       </div>
     </section>
-
     <section class="section container fade-in" id="galeria">
       <h2>Galeria</h2>
       <div class="gallery-grid">
@@ -93,7 +83,6 @@
         <button class="gallery-item" data-full="assets/images/kuchnia-2.jpg"><img src="assets/images/kuchnia-2.jpg" alt="Kuchnia ujęcie 2" loading="lazy" decoding="async"></button>
       </div>
     </section>
-
     <section class="section section--tint fade-in" id="wyposazenie">
       <div class="container">
         <h2>Wyposażenie</h2>
@@ -114,7 +103,22 @@
         </div>
       </div>
     </section>
-
+    <section class="section container fade-in" id="mapa-google">
+      <h2>Gdzie znajduje się mieszkanie</h2>
+      <p>ul. Rozrywki 24, Kraków – Prądnik Czerwony</p>
+      <div class="google-map">
+        <iframe
+          src="https://maps.google.com/maps?q=50.09270884862374,19.97626877081445&z=16&hl=pl&output=embed"
+          title="Mapa Google – ul. Rozrywki 24, Kraków"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen></iframe>
+      </div>
+      <p class="map-actions">
+        <a class="btn" href="https://www.google.com/maps/search/?api=1&query=50.09270884862374%2C19.97626877081445" target="_blank" rel="noopener"><i class="fa-solid fa-map-location-dot"></i> Otwórz w Google Maps</a>
+        <a class="btn" href="https://www.google.com/maps/dir/?api=1&destination=50.09270884862374%2C19.97626877081445" target="_blank" rel="noopener"><i class="fa-solid fa-route"></i> Wyznacz trasę</a>
+      </p>
+    </section>
     <section class="section container fade-in" id="lokalizacja">
       <h2>Lokalizacja</h2>
       <p>Mieszkanie znajduje się przy ul. Rozrywki 24 w Krakowie, w zielonej i spokojnej okolicy, 8 minut spacerem od Quattro Business Park.</p>
@@ -127,75 +131,17 @@
       </ul>
       <div id="map" class="map" role="region" aria-label="Mapa lokalizacji mieszkania i okolicznych punktów"></div>
     </section>
-
     <section class="section container fade-in" id="oplaty">
       <h2>Opłaty</h2>
       <div class="pricing">
         <p><strong>Odstępne:</strong> 2600 zł</p>
-        <p><strong>Czynsz administracyjny:</strong> 490 zł</p>
+        <p><strong>Czynsz administracyjny:</strong> 490 zł (w tym ogrzewanie miejskie z MPEC)</p>
         <p><strong>Abonament gazowy:</strong> 11,18 zł</p>
         <p><strong>Media:</strong> wg zużycia</p>
         <p><strong>Kaucja:</strong> 2600 zł</p>
       </div>
       <p class="badge">Bez prowizji — wynajem bezpośrednio od właściciela</p>
     </section>
-
-    <section class="section container fade-in" id="dlaczego">
-      <h2>Dlaczego warto?</h2>
-      <div class="benefits">
-        <span><i class="fa-solid fa-tree"></i>bardzo zielona okolica</span>
-        <span><i class="fa-solid fa-eye-slash"></i>brak bloków zaglądających w okna</span>
-        <span><i class="fa-solid fa-moon"></i>spokojna okolica</span>
-        <span><i class="fa-solid fa-train-tram"></i>świetna komunikacja</span>
-        <span><i class="fa-solid fa-house-signal"></i>pełne wyposażenie</span>
-        <span><i class="fa-solid fa-box-open"></i>gotowe do zamieszkania</span>
-        <span><i class="fa-solid fa-heart"></i>idealne dla singla lub pary</span>
-        <span><i class="fa-solid fa-city"></i>blisko biur i infrastruktury miejskiej</span>
-      </div>
-    </section>
-
-    <section class="section section--tint fade-in" id="dokumenty">
-      <div class="container">
-        <h2>Dokumenty najmu — do wglądu przed podpisaniem</h2>
-        <p class="docs-intro">
-          Gram w otwarte karty: poniżej możesz pobrać i na spokojnie przeczytać dokładnie te dokumenty,
-          które podpiszemy przy przekazaniu mieszkania. Umowa <strong>podlega sprawdzeniu przed podpisaniem</strong> —
-          masz pełne prawo zweryfikować każdy zapis, zadać pytania i wyjaśnić wątpliwości, zanim cokolwiek
-          parafujesz. Z kolei spis wyposażenia z protokołu <strong>porównasz ze stanem faktycznym</strong>
-          podczas odbioru mieszkania — pozycja po pozycji, wraz ze stanem liczników.
-        </p>
-        <div class="docs-grid">
-          <article class="doc-card">
-            <div class="doc-card__icon"><i class="fa-solid fa-file-contract"></i></div>
-            <h3>Umowa najmu</h3>
-            <p>
-              Pełny wzór umowy najmu lokalu: okres najmu, opłaty (2600 zł + 490 zł czynszu administracyjnego),
-              kaucja, zasady korzystania z mieszkania oraz warunki rozwiązania. Bez drobnego druku
-              i ukrytych haczyków.
-            </p>
-            <div class="doc-card__actions">
-              <a class="btn" href="dokumenty/umowa-najmu.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf"></i> Otwórz PDF</a>
-              <a class="btn btn--outline" href="dokumenty/umowa-najmu.docx"><i class="fa-solid fa-file-word"></i> Pobierz DOCX</a>
-            </div>
-          </article>
-          <article class="doc-card">
-            <div class="doc-card__icon"><i class="fa-solid fa-clipboard-check"></i></div>
-            <h3>Protokół zdawczo-odbiorczy</h3>
-            <p>
-              Kompletny spis wyposażenia każdego pomieszczenia oraz miejsce na stan liczników.
-              Przy przekazaniu kluczy wspólnie porównamy spis ze stanem faktycznym — to zabezpieczenie
-              dla obu stron, także przy zwrocie kaucji.
-            </p>
-            <div class="doc-card__actions">
-              <a class="btn" href="dokumenty/protokol-zdawczo-odbiorczy.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf"></i> Otwórz PDF</a>
-              <a class="btn btn--outline" href="dokumenty/protokol-zdawczo-odbiorczy.docx"><i class="fa-solid fa-file-word"></i> Pobierz DOCX</a>
-            </div>
-          </article>
-        </div>
-        <p class="badge"><i class="fa-solid fa-shield-halved"></i> Żadnych niespodzianek: to, co czytasz tutaj, podpisujemy przy odbiorze.</p>
-      </div>
-    </section>
-
     <section class="section container fade-in" id="koszty">
       <div class="analytics">
         <div class="analytics__head">
@@ -238,7 +184,60 @@
         </article>
       </div>
     </section>
-
+    <section class="section container fade-in" id="dlaczego">
+      <h2>Dlaczego warto?</h2>
+      <div class="benefits">
+        <span><i class="fa-solid fa-tree"></i>bardzo zielona okolica</span>
+        <span><i class="fa-solid fa-eye-slash"></i>brak bloków zaglądających w okna</span>
+        <span><i class="fa-solid fa-moon"></i>spokojna okolica</span>
+        <span><i class="fa-solid fa-train-tram"></i>świetna komunikacja</span>
+        <span><i class="fa-solid fa-house-signal"></i>pełne wyposażenie</span>
+        <span><i class="fa-solid fa-box-open"></i>gotowe do zamieszkania</span>
+        <span><i class="fa-solid fa-heart"></i>idealne dla singla lub pary</span>
+        <span><i class="fa-solid fa-city"></i>blisko biur i infrastruktury miejskiej</span>
+      </div>
+    </section>
+    <section class="section section--tint fade-in" id="dokumenty">
+      <div class="container">
+        <h2>Dokumenty najmu — do wglądu przed podpisaniem</h2>
+        <p class="docs-intro">
+          Gram w otwarte karty: poniżej możesz pobrać i na spokojnie przeczytać dokładnie te dokumenty,
+          które podpiszemy przy przekazaniu mieszkania. Umowa <strong>podlega sprawdzeniu przed podpisaniem</strong> —
+          masz pełne prawo zweryfikować każdy zapis, zadać pytania i wyjaśnić wątpliwości, zanim cokolwiek
+          parafujesz. Z kolei spis wyposażenia z protokołu <strong>porównasz ze stanem faktycznym</strong>
+          podczas odbioru mieszkania — pozycja po pozycji, wraz ze stanem liczników.
+        </p>
+        <div class="docs-grid">
+          <article class="doc-card">
+            <div class="doc-card__icon"><i class="fa-solid fa-file-contract"></i></div>
+            <h3>Umowa najmu</h3>
+            <p>
+              Pełny wzór umowy najmu lokalu: okres najmu, opłaty (2600 zł + 490 zł czynszu administracyjnego),
+              kaucja, zasady korzystania z mieszkania oraz warunki rozwiązania. Bez drobnego druku
+              i ukrytych haczyków.
+            </p>
+            <div class="doc-card__actions">
+              <a class="btn" href="dokumenty/umowa-najmu.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf"></i> Otwórz PDF</a>
+              <a class="btn btn--outline" href="dokumenty/umowa-najmu.docx"><i class="fa-solid fa-file-word"></i> Pobierz DOCX</a>
+            </div>
+          </article>
+          <article class="doc-card">
+            <div class="doc-card__icon"><i class="fa-solid fa-clipboard-check"></i></div>
+            <h3>Protokół zdawczo-odbiorczy</h3>
+            <p>
+              Kompletny spis wyposażenia każdego pomieszczenia oraz miejsce na stan liczników.
+              Przy przekazaniu kluczy wspólnie porównamy spis ze stanem faktycznym — to zabezpieczenie
+              dla obu stron, także przy zwrocie kaucji.
+            </p>
+            <div class="doc-card__actions">
+              <a class="btn" href="dokumenty/protokol-zdawczo-odbiorczy.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf"></i> Otwórz PDF</a>
+              <a class="btn btn--outline" href="dokumenty/protokol-zdawczo-odbiorczy.docx"><i class="fa-solid fa-file-word"></i> Pobierz DOCX</a>
+            </div>
+          </article>
+        </div>
+        <p class="badge"><i class="fa-solid fa-shield-halved"></i> Żadnych niespodzianek: to, co czytasz tutaj, podpisujemy przy odbiorze.</p>
+      </div>
+    </section>
     <section class="section section--tint fade-in" id="rezerwacja">
       <div class="container booking-layout">
         <div>
@@ -281,11 +280,6 @@
     <div class="container">
       <p>Oferta prywatna — pośrednikom dziękuję</p>
       <p>Telefon: <a href="tel:+48695790060">+48 695 790 060</a> | E-mail: <a href="mailto:krakowrozrywka@gmail.com">krakowrozrywka@gmail.com</a></p>
-      <div class="socials">
-        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-      </div>
     </div>
   </footer>
 
