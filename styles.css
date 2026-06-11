@@ -55,6 +55,23 @@ h1, h2 { font-family: Fraunces, serif; }
 }
 .topbar, .hero__content { position: relative; z-index: 2; }
 .topbar { padding-top: 1.2rem; display: flex; justify-content: space-between; align-items: center; }
+.topbar__actions { display: flex; gap: .6rem; align-items: center; }
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  background: rgba(15, 24, 22, .52);
+  border: 1px solid rgba(255, 255, 255, .34);
+  padding: .45rem .8rem;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+  transition: transform .22s ease, background .22s ease;
+}
+.lang-switch:hover { transform: translateY(-2px); background: rgba(15, 24, 22, .72); }
+.lang-switch svg { width: 1.4rem; height: auto; border-radius: 3px; display: block; box-shadow: 0 0 0 1px rgba(255,255,255,.35); }
 .brand {
   color: #fff;
   font-weight: 800;

@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cosy 43 m² apartment for rent | Kraków – Prądnik Czerwony</title>
+  <meta name="description" content="Modern 43 m² apartment for rent in Kraków, Prądnik Czerwony. Balcony, fully furnished, no agency fee, close to Quattro Business Park." />
+  <meta name="keywords" content="apartment for rent Kraków, Prądnik Czerwony, 43m2 flat, no commission, Quattro Business Park" />
+  <meta name="theme-color" content="#5f7f66" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%235f7f66'/><path d='M50 20 84 50H73V80H57V60H43V80H27V50H16Z' fill='white'/></svg>" />
+  <link rel="alternate" hreflang="pl" href="https://rozrywka.github.io/" />
+  <link rel="alternate" hreflang="en" href="https://rozrywka.github.io/en.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:site_name" content="Apartment for rent — Kraków, Prądnik Czerwony" />
+  <meta property="og:title" content="Cosy 43 m² apartment for rent | Kraków – Prądnik Czerwony" />
+  <meta property="og:description" content="Modern 43 m² apartment for rent in Kraków, Prądnik Czerwony. Balcony, fully furnished, no agency fee, close to Quattro Business Park." />
+  <meta property="og:image" content="https://rozrywka.github.io/assets/images/hero.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Cosy 43 m² apartment for rent | Kraków – Prądnik Czerwony" />
+  <meta name="twitter:description" content="43 m² apartment for rent, Prądnik Czerwony — balcony, fully furnished, no agency fee." />
+  <meta name="twitter:image" content="https://rozrywka.github.io/assets/images/hero.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <div class="availability-bar" role="status">
+    <span class="dot" aria-hidden="true"></span>
+    Offer active — the apartment is still available
+  </div>
+  <header class="hero" id="start">
+    <div class="hero__overlay"></div>
+    <img src="assets/images/hero.jpg" alt="Living room of the apartment for rent in Kraków" class="hero__bg" loading="eager" decoding="async" fetchpriority="high" />
+    <nav class="topbar container">
+      <div class="brand">Rozrywka 24</div>
+      <div class="topbar__actions">
+        <a class="lang-switch" href="index.html" lang="pl" aria-label="Wersja polska" title="Polski">
+          <svg viewBox="0 0 16 10" aria-hidden="true"><rect width="16" height="5" fill="#ffffff"/><rect y="5" width="16" height="5" fill="#DC143C"/></svg>
+          PL
+        </a>
+        <a class="btn btn--ghost" href="#kontakt">Contact</a>
+      </div>
+    </nav>
+    <div class="hero__content container fade-in">
+      <p class="eyebrow">Private offer | No agency fee</p>
+      <h1>Cosy 43 m² apartment | Kraków – Prądnik Czerwony</h1>
+      <p>Living room + separate bedroom | Balcony | Close to Quattro Business Park</p>
+      <a class="btn" href="#rezerwacja">Book a viewing</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="section container fade-in" id="mieszkanie">
+      <h2>About the apartment</h2>
+      <div class="info-grid">
+        <article><i class="fa-solid fa-ruler-combined"></i><span>43 m²</span></article>
+        <article><i class="fa-solid fa-couch"></i><span>Living room + separate bedroom</span></article>
+        <article><i class="fa-solid fa-door-open"></i><span>5 m² balcony</span></article>
+        <article><i class="fa-solid fa-stairs"></i><span>1st floor</span></article>
+        <article><i class="fa-solid fa-building"></i><span>Lift</span></article>
+        <article><i class="fa-solid fa-warehouse"></i><span>Cellar storage room</span></article>
+        <article><i class="fa-solid fa-user-check"></i><span>Rented directly from the owner</span></article>
+        <article><i class="fa-solid fa-key"></i><span>Available immediately</span></article>
+        <article><i class="fa-solid fa-paw"></i><span>Small pets welcome</span></article>
+        <article><i class="fa-solid fa-square-parking"></i><span>Public parking next to the building</span></article>
+        <article><i class="fa-solid fa-temperature-arrow-up"></i><span>District heating (MPEC) — included in the maintenance fee</span></article>
+        <article><i class="fa-solid fa-file-signature"></i><span>Minimum lease term: 1 year</span></article>
+        <article><i class="fa-solid fa-calendar-xmark"></i><span>Termination as per the lease terms</span></article>
+      </div>
+    </section>
+    <section class="section container fade-in" id="galeria">
+      <h2>Gallery</h2>
+      <div class="gallery-grid">
+        <button class="gallery-item" data-full="assets/images/hero.jpg"><img src="assets/images/hero.jpg" alt="Living room — main view" loading="lazy" decoding="async"></button>
+        <button class="gallery-item" data-full="assets/images/salon.jpg"><img src="assets/images/salon.jpg" alt="Living room" loading="lazy" decoding="async"></button>
+        <button class="gallery-item" data-full="assets/images/sypialnia.jpg"><img src="assets/images/sypialnia.jpg" alt="Bedroom" loading="lazy" decoding="async"></button>
+        <button class="gallery-item" data-full="assets/images/kuchnia.jpg"><img src="assets/images/kuchnia.jpg" alt="Kitchen" loading="lazy" decoding="async"></button>
+        <button class="gallery-item" data-full="assets/images/lazienka.jpg"><img src="assets/images/lazienka.jpg" alt="Bathroom" loading="lazy" decoding="async"></button>
+        <button class="gallery-item" data-full="assets/images/balkon.jpg"><img src="assets/images/balkon.jpg" alt="Balcony" loading="lazy" decoding="async"></button>
+        <button class="gallery-item" data-full="assets/images/przedpokoj.jpg"><img src="assets/images/przedpokoj.jpg" alt="Hallway" loading="lazy" decoding="async"></button>
+        <button class="gallery-item" data-full="assets/images/okolica.jpg"><img src="assets/images/okolica.jpg" alt="View and neighbourhood" loading="lazy" decoding="async"></button>
+        <button class="gallery-item" data-full="assets/images/salon-2.jpg"><img src="assets/images/salon-2.jpg" alt="Living room — view 2" loading="lazy" decoding="async"></button>
+        <button class="gallery-item" data-full="assets/images/salon-3.jpg"><img src="assets/images/salon-3.jpg" alt="Living room — view 3" loading="lazy" decoding="async"></button>
+        <button class="gallery-item" data-full="assets/images/sypialnia-2.jpg"><img src="assets/images/sypialnia-2.jpg" alt="Bedroom — view 2" loading="lazy" decoding="async"></button>
+        <button class="gallery-item" data-full="assets/images/kuchnia-2.jpg"><img src="assets/images/kuchnia-2.jpg" alt="Kitchen — view 2" loading="lazy" decoding="async"></button>
+      </div>
+    </section>
+    <section class="section section--tint fade-in" id="wyposazenie">
+      <div class="container">
+        <h2>Furnishings &amp; appliances</h2>
+        <div class="cards-grid">
+          <article class="card"><i class="fa-solid fa-tv"></i><span>42&Prime; TV</span></article>
+          <article class="card"><i class="fa-solid fa-sink"></i><span>Dishwasher</span></article>
+          <article class="card"><i class="fa-solid fa-fire-burner"></i><span>Oven</span></article>
+          <article class="card"><i class="fa-solid fa-soap"></i><span>Washing machine</span></article>
+          <article class="card"><i class="fa-solid fa-snowflake"></i><span>Fridge</span></article>
+          <article class="card"><i class="fa-solid fa-fire-flame-curved"></i><span>Gas hob</span></article>
+          <article class="card"><i class="fa-solid fa-utensils"></i><span>Fully equipped kitchen</span></article>
+          <article class="card"><i class="fa-solid fa-wifi"></i><span>Fast internet</span></article>
+          <article class="card"><i class="fa-solid fa-chair"></i><span>Furnished balcony</span></article>
+          <article class="card"><i class="fa-solid fa-door-closed"></i><span>Spacious wardrobes</span></article>
+          <article class="card"><i class="fa-solid fa-wand-magic-sparkles"></i><span>Vacuum cleaner</span></article>
+          <article class="card"><i class="fa-solid fa-shirt"></i><span>Iron</span></article>
+          <article class="card"><i class="fa-solid fa-wind"></i><span>Hair dryer</span></article>
+        </div>
+      </div>
+    </section>
+    <section class="section container fade-in" id="mapa-google">
+      <h2>Where the apartment is located</h2>
+      <p>ul. Rozrywki 24, Kraków – Prądnik Czerwony</p>
+      <div class="google-map">
+        <iframe
+          src="https://maps.google.com/maps?q=50.09270884862374,19.97626877081445&z=16&hl=en&output=embed"
+          title="Google Map – ul. Rozrywki 24, Kraków"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen></iframe>
+      </div>
+      <p class="map-actions">
+        <a class="btn" href="https://www.google.com/maps/search/?api=1&query=50.09270884862374%2C19.97626877081445" target="_blank" rel="noopener"><i class="fa-solid fa-map-location-dot"></i> Open in Google Maps</a>
+        <a class="btn" href="https://www.google.com/maps/dir/?api=1&destination=50.09270884862374%2C19.97626877081445" target="_blank" rel="noopener"><i class="fa-solid fa-route"></i> Get directions</a>
+      </p>
+    </section>
+    <section class="section container fade-in" id="lokalizacja">
+      <h2>Location</h2>
+      <p>The apartment is located at ul. Rozrywki 24 in Kraków, in a green and quiet neighbourhood, an 8-minute walk from Quattro Business Park.</p>
+      <h3>What's nearby?</h3>
+      <ul class="nearby-list">
+        <li>CH Serenada (shopping centre)</li><li>Park Wodny (water park)</li><li>Multikino (cinema)</li><li>Auchan</li><li>OBI</li>
+        <li>Quattro Business Park</li><li>Żabka</li><li>Lewiatan</li><li>Biedronka</li><li>Capri Pizza</li>
+        <li>free outdoor gym</li>
+        <li>bus &amp; tram stops: Strzelców, Rondo Barei</li>
+      </ul>
+      <div id="map" class="map" role="region" aria-label="Map of the apartment location and nearby points of interest"></div>
+    </section>
+    <section class="section container fade-in" id="oplaty">
+      <h2>Costs</h2>
+      <div class="pricing">
+        <p><strong>Rent:</strong> 2600 zł / month</p>
+        <p><strong>Maintenance fee:</strong> 490 zł (includes MPEC district heating)</p>
+        <p><strong>Gas standing charge:</strong> 11.18 zł</p>
+        <p><strong>Utilities:</strong> billed according to actual usage</p>
+        <p><strong>Deposit:</strong> 2600 zł (refundable)</p>
+      </div>
+      <p class="badge">No agency fee — rented directly from the owner</p>
+    </section>
+    <section class="section container fade-in" id="koszty">
+      <div class="analytics">
+        <div class="analytics__head">
+          <div>
+            <p class="eyebrow-dark">Cost calculator</p>
+            <h2>Utility costs &amp; usage analysis</h2>
+          </div>
+        </div>
+
+        <div class="analytics__controls">
+          <label>Number of people
+            <select id="people-select">
+              <option value="1">1 person</option>
+              <option value="2">2 people</option>
+            </select>
+          </label>
+          <label>Usage scenario
+            <select id="scenario-select">
+              <option value="eco">Economical</option>
+              <option value="comfort">Comfortable</option>
+              <option value="none">No usage (vacant apartment)</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="kpi-grid">
+          <article class="kpi"><p>Utilities / month</p><strong id="media-cost">0 zł</strong><small id="media-note">according to usage</small></article>
+          <article class="kpi"><p>Fixed costs / month</p><strong>3101.18 zł</strong><small>rent 2600 + maintenance 490 + gas standing charge 11.18</small></article>
+          <article class="kpi"><p>Total cost / month</p><strong id="total-cost">0 zł</strong><small id="per-person">—</small></article>
+        </div>
+
+        <article class="chart-card">
+          <h3>Utility cost breakdown</h3>
+          <div id="cost-bars" class="bars"></div>
+        </article>
+
+        <article class="insight price-list">
+          <h3>Unit rates</h3>
+          <p>Electricity: <strong>1.53 zł / kWh</strong> | Gas: <strong>3.90 zł / m³</strong> | Hot water: <strong>44.00 zł / m³</strong> | Cold water: <strong>14.86 zł / m³</strong></p>
+        </article>
+      </div>
+    </section>
+    <section class="section container fade-in" id="dlaczego">
+      <h2>Why this place?</h2>
+      <div class="benefits">
+        <span><i class="fa-solid fa-tree"></i>very green neighbourhood</span>
+        <span><i class="fa-solid fa-eye-slash"></i>no buildings overlooking the windows</span>
+        <span><i class="fa-solid fa-moon"></i>quiet area</span>
+        <span><i class="fa-solid fa-train-tram"></i>excellent public transport</span>
+        <span><i class="fa-solid fa-house-signal"></i>fully equipped</span>
+        <span><i class="fa-solid fa-box-open"></i>ready to move in</span>
+        <span><i class="fa-solid fa-heart"></i>ideal for a single person or a couple</span>
+        <span><i class="fa-solid fa-city"></i>close to offices and city amenities</span>
+      </div>
+    </section>
+    <section class="section section--tint fade-in" id="dokumenty">
+      <div class="container">
+        <h2>Lease documents — available for review before signing</h2>
+        <p class="docs-intro">
+          Full transparency: below you can download and calmly read the exact documents
+          we will sign when the apartment is handed over. The lease agreement <strong>is open to review before signing</strong> —
+          you have every right to verify each clause, ask questions and clear up any doubts before you initial anything.
+          The inventory list from the handover protocol <strong>can be compared against the actual state</strong>
+          of the apartment during the handover — item by item, together with the meter readings.
+          Please note: the documents are provided in Polish, as the legally binding language of the lease.
+        </p>
+        <div class="docs-grid">
+          <article class="doc-card">
+            <div class="doc-card__icon"><i class="fa-solid fa-file-contract"></i></div>
+            <h3>Lease agreement (Umowa najmu)</h3>
+            <p>
+              The full template of the lease: term, costs (2600 zł + 490 zł maintenance fee),
+              deposit, rules for using the apartment and termination conditions. No fine print,
+              no hidden catches.
+            </p>
+            <div class="doc-card__actions">
+              <a class="btn" href="dokumenty/umowa-najmu.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf"></i> Open PDF</a>
+              <a class="btn btn--outline" href="dokumenty/umowa-najmu.docx"><i class="fa-solid fa-file-word"></i> Download DOCX</a>
+            </div>
+          </article>
+          <article class="doc-card">
+            <div class="doc-card__icon"><i class="fa-solid fa-clipboard-check"></i></div>
+            <h3>Handover protocol (Protokół zdawczo-odbiorczy)</h3>
+            <p>
+              A complete inventory of every room plus space for meter readings.
+              At key handover we will compare the list against the actual state together —
+              protection for both sides, including the deposit refund.
+            </p>
+            <div class="doc-card__actions">
+              <a class="btn" href="dokumenty/protokol-zdawczo-odbiorczy.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf"></i> Open PDF</a>
+              <a class="btn btn--outline" href="dokumenty/protokol-zdawczo-odbiorczy.docx"><i class="fa-solid fa-file-word"></i> Download DOCX</a>
+            </div>
+          </article>
+        </div>
+        <p class="badge"><i class="fa-solid fa-shield-halved"></i> No surprises: what you read here is what we sign at the handover.</p>
+      </div>
+    </section>
+    <section class="section section--tint fade-in" id="rezerwacja">
+      <div class="container booking-layout">
+        <div>
+          <h2>Book an apartment viewing</h2>
+          <p>Pick a day and time (6:00–8:00 PM, every 30 min). Slots marked as taken are provisionally reserved.</p>
+          <label for="visit-date">Choose a day</label>
+          <input type="date" id="visit-date" />
+          <div id="slot-list" class="slots" aria-live="polite"></div>
+          <p id="booking-status" class="booking-status"></p>
+        </div>
+
+        <form id="kontakt" class="form" method="POST">
+          <h3>Contact form</h3>
+          <input type="hidden" name="wybrany_termin" id="selected-slot-input" />
+          <input type="hidden" name="_subject" id="subject-input" />
+          <input type="hidden" name="link_potwierdzenia" id="confirm-link-input" />
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <label for="name">First name</label>
+          <input id="name" name="imie" type="text" required />
+          <small class="field-note"><i class="fa-solid fa-circle-info"></i> Once your booking is confirmed, your first name will be visible on the booking list next to the chosen slot.</small>
+          <label for="phone">Phone</label>
+          <input id="phone" name="telefon" type="tel" required />
+          <label for="email">E-mail</label>
+          <input id="email" name="email" type="email" required />
+          <label for="message">Message</label>
+          <textarea id="message" name="wiadomosc" rows="4" placeholder="A short message"></textarea>
+          <div class="captcha">
+            <label for="captcha-input">Anti-spam: <span id="captcha-question" aria-live="polite">… + … = ?</span></label>
+            <input id="captcha-input" inputmode="numeric" pattern="[0-9]*" autocomplete="off" required placeholder="?" />
+          </div>
+          <button class="btn" type="submit">Ask about the apartment</button>
+          <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+          <p class="form-note">After sending the form your slot is provisionally reserved — you will receive confirmation by phone or text message.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Private offer — no agencies, please</p>
+      <p>Phone: <a href="tel:+48695790060">+48 695 790 060</a> | E-mail: <a href="mailto:krakowrozrywka@gmail.com">krakowrozrywka@gmail.com</a></p>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox__close" id="lightbox-close" aria-label="Close">×</button>
+    <img id="lightbox-image" src="" alt="Enlarged photo" />
+  </div>
+</body>
+</html>

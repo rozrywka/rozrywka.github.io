@@ -6,6 +6,53 @@ const CONFIG = {
   formspreeEndpoint: "https://formspree.io/f/xeewreqw"
 };
 
+// === I18N — teksty dynamiczne zależne od języka dokumentu ===
+const LANG = document.documentElement.lang === "en" ? "en" : "pl";
+const STR = {
+  pl: {
+    slotFree: (t) => `${t} — wolny`,
+    slotBusy: (t) => `${t} — zajęty`,
+    slotReserved: (t, n) => `${t} — zarezerwowane: ${n}`,
+    pickDay: "Wybierz najpierw dzień z kalendarza.",
+    pickSlot: "Wybierz dostępny slot i uzupełnij formularz.",
+    chosen: (s) => `Wybrano termin: ${s} — uzupełnij formularz i oczekuj na potwierdzenie.`,
+    needSlot: "Wybierz najpierw termin oglądania z listy slotów.",
+    captchaErr: "Błędny wynik działania — spróbuj jeszcze raz.",
+    sending: "Wysyłanie zgłoszenia…",
+    sent: "✓ Zgłoszenie wysłane! Termin jest wstępnie zarezerwowany — potwierdzenie otrzymasz telefonicznie lub SMS-em.",
+    sendErr: "Nie udało się wysłać zgłoszenia. Spróbuj ponownie lub skontaktuj się telefonicznie.",
+    vacant: "mieszkanie nieużytkowane",
+    eco: "wariant oszczędny",
+    comfort: "wariant komfortowy",
+    perPerson: (v) => `${v} na osobę`,
+    media: { elec: "Prąd", gas: "Gaz", hot: "Ciepła woda", cold: "Zimna woda" },
+    popupHome: "Mieszkanie na wynajem",
+    popupOpen: "Otwórz w Google Maps",
+    popupRoute: "Wyznacz trasę"
+  },
+  en: {
+    slotFree: (t) => `${t} — available`,
+    slotBusy: (t) => `${t} — taken`,
+    slotReserved: (t, n) => `${t} — reserved: ${n}`,
+    pickDay: "Please pick a day from the calendar first.",
+    pickSlot: "Choose an available slot and fill in the form.",
+    chosen: (s) => `Selected slot: ${s} — fill in the form and await confirmation.`,
+    needSlot: "Please select a viewing slot from the list first.",
+    captchaErr: "Wrong answer — please try again.",
+    sending: "Sending your request…",
+    sent: "✓ Request sent! Your slot is provisionally reserved — you will receive confirmation by phone or text message.",
+    sendErr: "Sending failed. Please try again or contact me by phone.",
+    vacant: "vacant apartment",
+    eco: "economical scenario",
+    comfort: "comfortable scenario",
+    perPerson: (v) => `${v} per person`,
+    media: { elec: "Electricity", gas: "Gas", hot: "Hot water", cold: "Cold water" },
+    popupHome: "Apartment for rent",
+    popupOpen: "Open in Google Maps",
+    popupRoute: "Get directions"
+  }
+}[LANG];
+
 const allSlots = ["18:00", "18:30", "19:00", "19:30"];
 let selectedSlot = "";
 let bookedSlots = new Map(); // "RRRR-MM-DD GG:MM" -> imię (lub "")
@@ -72,7 +119,7 @@ function renderSlots() {
   selectedSlotInput.value = "";
 
   if (!date) {
-    statusBox.textContent = "Wybierz najpierw dzień z kalendarza.";
+    statusBox.textContent = STR.pickDay;
     return;
   }
 
@@ -85,22 +132,22 @@ function renderSlots() {
       btn.classList.add("busy");
       btn.disabled = true;
       const name = busyName(date, time);
-      btn.textContent = name ? `${time} — zarezerwowane: ${name}` : `${time} — zajęty`;
+      btn.textContent = name ? STR.slotReserved(time, name) : STR.slotBusy(time);
     } else {
-      btn.textContent = `${time} - wolny`;
+      btn.textContent = STR.slotFree(time);
       btn.addEventListener("click", () => {
         document.querySelectorAll(".slot-btn").forEach((b) => b.classList.remove("selected"));
         btn.classList.add("selected");
         selectedSlot = `${date} ${time}`;
         selectedSlotInput.value = selectedSlot;
-        statusBox.textContent = `Wybrano termin: ${selectedSlot} — uzupełnij formularz i oczekuj na potwierdzenie.`;
+        statusBox.textContent = STR.chosen(selectedSlot);
       });
     }
 
     slotList.appendChild(btn);
   });
 
-  statusBox.textContent = "Wybierz dostępny slot i uzupełnij formularz.";
+  statusBox.textContent = STR.pickSlot;
 }
 
 function initDateInput() {
@@ -179,7 +226,6 @@ function setFormStatus(type, message) {
 }
 
 function initForm() {
-  const confirmMsg = "✓ Zgłoszenie wysłane! Termin jest wstępnie zarezerwowany — potwierdzenie otrzymasz telefonicznie lub SMS-em.";
   const submitBtn = form.querySelector('button[type="submit"]');
   newCaptcha();
 
@@ -187,14 +233,14 @@ function initForm() {
     e.preventDefault();
 
     if (!selectedSlot) {
-      setFormStatus("error", "Wybierz najpierw termin oglądania z listy slotów.");
+      setFormStatus("error", STR.needSlot);
       return;
     }
 
     const captchaInput = document.getElementById("captcha-input");
     if (parseInt(captchaInput.value, 10) !== captcha.a + captcha.b) {
       newCaptcha();
-      setFormStatus("error", "Błędny wynik działania — spróbuj jeszcze raz. / Wrong answer, try again.");
+      setFormStatus("error", STR.captchaErr);
       captchaInput.focus();
       return;
     }
@@ -205,7 +251,7 @@ function initForm() {
     document.getElementById("subject-input").value = `Rezerwacja oglądania: ${selectedSlot} — ${name}`;
 
     submitBtn.disabled = true;
-    setFormStatus("pending", "Wysyłanie zgłoszenia…");
+    setFormStatus("pending", STR.sending);
 
     try {
       const formData = new FormData(form);
@@ -215,7 +261,7 @@ function initForm() {
         headers: { Accept: "application/json" }
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      setFormStatus("success", confirmMsg);
+      setFormStatus("success", STR.sent);
       form.reset();
       newCaptcha();
       document.querySelectorAll(".slot-btn.selected").forEach((b) => b.classList.remove("selected"));
@@ -224,7 +270,7 @@ function initForm() {
       statusBox.textContent = "";
     } catch (err) {
       console.error("Błąd wysyłki formularza:", err);
-      setFormStatus("error", "Nie udało się wysłać zgłoszenia. Spróbuj ponownie lub skontaktuj się telefonicznie.");
+      setFormStatus("error", STR.sendErr);
     } finally {
       submitBtn.disabled = false;
     }
@@ -236,7 +282,7 @@ function initAnalytics() {
   const peopleSel = document.getElementById("people-select");
   if (!scenarioSel || !peopleSel) return;
 
-  const fmt = (v) => `${v.toFixed(2).replace(".", ",")} zł`;
+  const fmt = (v) => LANG === "pl" ? `${v.toFixed(2).replace(".", ",")} zł` : `${v.toFixed(2)} zł`;
   const barsNode = document.getElementById("cost-bars");
   const mediaNode = document.getElementById("media-cost");
   const mediaNote = document.getElementById("media-note");
@@ -250,20 +296,21 @@ function initAnalytics() {
       ? { elec: 0, gas: 0, hot: 0, cold: 0 }
       : USAGE[people][variant];
 
+    const dec = (v) => LANG === "pl" ? v.toFixed(1).replace(".", ",") : v.toFixed(1);
     const items = [
-      { name: "Prąd", usage: `${u.elec} kWh`, cost: u.elec * PRICES.elec, color: "#f6c84c" },
-      { name: "Gaz", usage: `${u.gas.toFixed(1).replace(".", ",")} m³`, cost: u.gas * PRICES.gas, color: "#ad69ff" },
-      { name: "Ciepła woda", usage: `${u.hot.toFixed(1).replace(".", ",")} m³`, cost: u.hot * PRICES.hot, color: "#ff8a26" },
-      { name: "Zimna woda", usage: `${u.cold.toFixed(1).replace(".", ",")} m³`, cost: u.cold * PRICES.cold, color: "#38a8ff" }
+      { name: STR.media.elec, usage: `${u.elec} kWh`, cost: u.elec * PRICES.elec, color: "#f6c84c" },
+      { name: STR.media.gas, usage: `${dec(u.gas)} m³`, cost: u.gas * PRICES.gas, color: "#ad69ff" },
+      { name: STR.media.hot, usage: `${dec(u.hot)} m³`, cost: u.hot * PRICES.hot, color: "#ff8a26" },
+      { name: STR.media.cold, usage: `${dec(u.cold)} m³`, cost: u.cold * PRICES.cold, color: "#38a8ff" }
     ].sort((a, b) => b.cost - a.cost);
 
     const media = items.reduce((s, i) => s + i.cost, 0);
     const total = FIXED_COSTS + media;
 
     mediaNode.textContent = fmt(media);
-    mediaNote.textContent = variant === "none" ? "mieszkanie nieużytkowane" : variant === "eco" ? "wariant oszczędny" : "wariant komfortowy";
+    mediaNote.textContent = variant === "none" ? STR.vacant : variant === "eco" ? STR.eco : STR.comfort;
     totalNode.textContent = fmt(total);
-    perPersonNode.textContent = people === "2" && variant !== "none" ? `${fmt(total / 2)} na osobę` : "—";
+    perPersonNode.textContent = people === "2" && variant !== "none" ? STR.perPerson(fmt(total / 2)) : "—";
 
     barsNode.innerHTML = "";
     items.forEach((item) => {
@@ -311,9 +358,9 @@ function initMap() {
   L.marker(home, { icon: icon("fa-solid fa-house") })
     .addTo(map)
     .bindPopup(
-      `<strong>Rozrywki 24</strong><br>Mieszkanie na wynajem<br>` +
-      `<a href="${gmapsView}" target="_blank" rel="noopener">Otwórz w Google Maps</a> · ` +
-      `<a href="${gmapsRoute}" target="_blank" rel="noopener">Wyznacz trasę</a>`
+      `<strong>Rozrywki 24</strong><br>${STR.popupHome}<br>` +
+      `<a href="${gmapsView}" target="_blank" rel="noopener">${STR.popupOpen}</a> · ` +
+      `<a href="${gmapsRoute}" target="_blank" rel="noopener">${STR.popupRoute}</a>`
     );
 
   const poi = [
