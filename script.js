@@ -28,7 +28,10 @@ const STR = {
     media: { elec: "Prąd", gas: "Gaz", hot: "Ciepła woda", cold: "Zimna woda" },
     popupHome: "Mieszkanie na wynajem",
     popupOpen: "Otwórz w Google Maps",
-    popupRoute: "Wyznacz trasę"
+    popupRoute: "Wyznacz trasę",
+    noDay: "Brak dostępnych terminów w tym dniu — wybierz inny dzień.",
+    upcoming: "Najbliższe dostępne dni:",
+    noneAtAll: "Aktualnie nie ma dostępnych terminów. Zadzwoń lub napisz — ustalimy termin indywidualnie."
   },
   en: {
     slotFree: (t) => `${t} — available`,
@@ -49,13 +52,16 @@ const STR = {
     media: { elec: "Electricity", gas: "Gas", hot: "Hot water", cold: "Cold water" },
     popupHome: "Apartment for rent",
     popupOpen: "Open in Google Maps",
-    popupRoute: "Get directions"
+    popupRoute: "Get directions",
+    noDay: "No available slots on this day — please pick another date.",
+    upcoming: "Nearest available days:",
+    noneAtAll: "There are currently no available slots. Call or write — we will arrange a time individually."
   }
 }[LANG];
 
-const allSlots = ["18:00", "18:30", "19:00", "19:30"];
 let selectedSlot = "";
 let bookedSlots = new Map(); // "RRRR-MM-DD GG:MM" -> imię (lub "")
+let availability = new Map(); // "RRRR-MM-DD" -> ["GG:MM", ...] z dostepnosc.md
 let captcha = { a: 0, b: 0 };
 
 const dateInput = document.getElementById("visit-date");
@@ -104,6 +110,32 @@ async function loadBookedSlots() {
   }
 }
 
+// Parsuje dostepnosc.md (oferowane terminy) do mapy dzień -> posortowane godziny.
+// Terminy z przeszłości są pomijane.
+async function loadAvailability() {
+  availability = new Map();
+  try {
+    const res = await fetch("dostepnosc.md", { cache: "no-store" });
+    if (!res.ok) throw new Error(`Brak pliku dostepnosc.md (HTTP ${res.status})`);
+    const today = toIsoDate(new Date());
+    const re = /^-\s*(\d{4}-\d{2}-\d{2})\s+(\d{1,2}:\d{2})/;
+    (await res.text()).split(/\r?\n/).forEach((line) => {
+      const m = line.trim().match(re);
+      if (!m || m[1] < today) return;
+      const time = m[2].padStart(5, "0");
+      if (!availability.has(m[1])) availability.set(m[1], []);
+      if (!availability.get(m[1]).includes(time)) availability.get(m[1]).push(time);
+    });
+    availability.forEach((times) => times.sort());
+  } catch (err) {
+    console.warn("Nie udało się wczytać dostepnosc.md — brak oferowanych terminów.", err);
+  }
+}
+
+function availableDays() {
+  return [...availability.keys()].sort();
+}
+
 function isBusy(date, time) {
   return bookedSlots.has(`${date} ${time}`);
 }
@@ -112,18 +144,60 @@ function busyName(date, time) {
   return bookedSlots.get(`${date} ${time}`) || "";
 }
 
+// Chipy z najbliższymi dniami, w których są jeszcze wolne sloty.
+function renderUpcomingDays() {
+  const wrap = document.getElementById("upcoming-days");
+  if (!wrap) return;
+  wrap.innerHTML = "";
+
+  const days = availableDays().filter((day) =>
+    (availability.get(day) || []).some((time) => !isBusy(day, time))
+  );
+  if (days.length === 0) return;
+
+  const label = document.createElement("span");
+  label.className = "upcoming-label";
+  label.textContent = STR.upcoming;
+  wrap.appendChild(label);
+
+  days.slice(0, 6).forEach((day) => {
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = "day-chip" + (day === dateInput.value ? " active" : "");
+    chip.textContent = new Date(`${day}T12:00:00`).toLocaleDateString(
+      LANG === "pl" ? "pl-PL" : "en-GB",
+      { weekday: "short", day: "numeric", month: "short" }
+    );
+    chip.title = day;
+    chip.addEventListener("click", () => {
+      dateInput.value = day;
+      renderSlots();
+    });
+    wrap.appendChild(chip);
+  });
+}
+
 function renderSlots() {
   const date = dateInput.value;
   slotList.innerHTML = "";
   selectedSlot = "";
   selectedSlotInput.value = "";
 
-  if (!date) {
-    statusBox.textContent = STR.pickDay;
+  if (availability.size === 0) {
+    statusBox.textContent = STR.noneAtAll;
+    renderUpcomingDays();
     return;
   }
 
-  allSlots.forEach((time) => {
+  if (!date) {
+    statusBox.textContent = STR.pickDay;
+    renderUpcomingDays();
+    return;
+  }
+
+  const times = availability.get(date) || [];
+
+  times.forEach((time) => {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "slot-btn";
@@ -147,17 +221,20 @@ function renderSlots() {
     slotList.appendChild(btn);
   });
 
-  statusBox.textContent = STR.pickSlot;
+  statusBox.textContent = times.length === 0 ? STR.noDay : STR.pickSlot;
+  renderUpcomingDays();
 }
 
 function initDateInput() {
   const today = new Date();
+  const days = availableDays();
   const maxDate = new Date();
   maxDate.setMonth(maxDate.getMonth() + 2);
 
   dateInput.min = toIsoDate(today);
-  dateInput.max = toIsoDate(maxDate);
-  dateInput.value = toIsoDate(today);
+  dateInput.max = days.length > 0 ? days[days.length - 1] : toIsoDate(maxDate);
+  // domyślnie pierwszy dzień z dostępnymi terminami, a gdy brak — dziś
+  dateInput.value = days.length > 0 ? days[0] : toIsoDate(today);
 }
 
 function initFadeIn() {
@@ -387,8 +464,8 @@ function initMap() {
 }
 
 async function init() {
+  await Promise.all([loadBookedSlots(), loadAvailability()]);
   initDateInput();
-  await loadBookedSlots();
   renderSlots();
   dateInput.addEventListener("change", renderSlots);
   initFadeIn();
