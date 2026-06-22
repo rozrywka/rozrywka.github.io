@@ -30,9 +30,8 @@
   <script defer src="script.js"></script>
 </head>
 <body>
-  <div class="availability-bar" role="status">
-    <span class="dot" aria-hidden="true"></span>
-    Offer active — the apartment is still available
+  <div class="availability-bar rented" role="status">
+    The apartment has been rented — this offer is no longer available
   </div>
   <header class="hero" id="start">
     <div class="hero__overlay"></div>
@@ -51,7 +50,7 @@
       <p class="eyebrow">Private offer | No agency fee</p>
       <h1>Cosy 43 m² apartment | Kraków – Prądnik Czerwony</h1>
       <p>Living room + separate bedroom | Balcony | Close to Quattro Business Park</p>
-      <a class="btn" href="#rezerwacja">Book a viewing</a>
+      <a class="btn" href="#rezerwacja">Apartment rented</a>
     </div>
   </header>
 
@@ -248,45 +247,18 @@
       </div>
     </section>
     <section class="section section--tint fade-in" id="rezerwacja">
-      <div class="container booking-layout">
-        <div>
-          <h2>Book an apartment viewing</h2>
-          <p>The calendar only shows times when I am actually available. Pick a day and time — slots marked as taken are already provisionally reserved.</p>
-          <div id="upcoming-days" class="upcoming-days" aria-live="polite"></div>
-          <label for="visit-date">Choose a day</label>
-          <input type="date" id="visit-date" />
-          <div id="slot-list" class="slots" aria-live="polite"></div>
-          <p id="booking-status" class="booking-status"></p>
+      <div class="container">
+        <div class="rented-notice">
+          <div class="rented-notice__icon"><i class="fa-solid fa-house-circle-check"></i></div>
+          <h2>The apartment has been rented</h2>
+          <p>Thank you for the huge interest in this offer. The apartment has already found a tenant, so booking viewings and sending enquiries has been disabled.</p>
+          <p>If you are looking for a place to rent, feel free to get in touch in the future — another offer may come up.</p>
         </div>
-
-        <form id="kontakt" class="form" method="POST">
-          <h3>Contact form</h3>
-          <input type="hidden" name="wybrany_termin" id="selected-slot-input" />
-          <input type="hidden" name="_subject" id="subject-input" />
-          <input type="hidden" name="link_potwierdzenia" id="confirm-link-input" />
-          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
-          <label for="name">First name</label>
-          <input id="name" name="imie" type="text" required />
-          <small class="field-note"><i class="fa-solid fa-circle-info"></i> Once your booking is confirmed, your first name will be visible on the booking list next to the chosen slot.</small>
-          <label for="phone">Phone</label>
-          <input id="phone" name="telefon" type="tel" required />
-          <label for="email">E-mail</label>
-          <input id="email" name="email" type="email" required />
-          <label for="message">Message</label>
-          <textarea id="message" name="wiadomosc" rows="4" placeholder="A short message"></textarea>
-          <div class="captcha">
-            <label for="captcha-input">Anti-spam: <span id="captcha-question" aria-live="polite">… + … = ?</span></label>
-            <input id="captcha-input" inputmode="numeric" pattern="[0-9]*" autocomplete="off" required placeholder="?" />
-          </div>
-          <button class="btn" type="submit">Ask about the apartment</button>
-          <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
-          <p class="form-note">After sending the form your slot is provisionally reserved — you will receive confirmation by phone or text message.</p>
-        </form>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
+  <footer class="footer" id="kontakt">
     <div class="container">
       <p>Private offer — no agencies, please</p>
       <p>Phone: <a href="tel:+48695790060">+48 695 790 060</a> | E-mail: <a href="mailto:krakowrozrywka@gmail.com">krakowrozrywka@gmail.com</a></p>

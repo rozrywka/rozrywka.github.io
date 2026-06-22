@@ -18,6 +18,9 @@
   font-size: .95rem;
   letter-spacing: .01em;
 }
+.availability-bar.rented {
+  background: #7a2e2e;
+}
 .availability-bar .dot {
   display: inline-block;
   width: .6rem;
@@ -194,6 +197,19 @@ h1, h2 { font-family: Fraunces, serif; }
 input, textarea { width: 100%; border: 1px solid #ccd4d3; border-radius: 12px; padding: .76rem .85rem; font: inherit; }
 input:focus, textarea:focus { outline: 2px solid #bed2c4; border-color: var(--accent); }
 .booking-status, .form-note { color: var(--muted); font-size: .95rem; }
+.rented-notice {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+.rented-notice__icon {
+  font-size: 2.75rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+.rented-notice h2 { margin: 0 0 .75rem; }
+.rented-notice p { color: var(--muted); margin: .5rem 0; }
 .footer { background: #17201f; color: #dde5e3; padding: 2.1rem 0; }
 .footer a { color: #fff; }
 .lightbox { position: fixed; inset: 0; display: none; background: rgba(8, 14, 13, .92); z-index: 100; justify-content: center; align-items: center; padding: 1rem; }

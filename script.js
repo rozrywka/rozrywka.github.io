@@ -3,7 +3,10 @@ const CONFIG = {
   // prywatne repozytorium GitHub z ewidencją rezerwacji (tam trafiają issue)
   githubRepo: "rozrywka/rezerwacje",
   // endpoint formularza z https://formspree.io (darmowe konto)
-  formspreeEndpoint: "https://formspree.io/f/xeewreqw"
+  formspreeEndpoint: "https://formspree.io/f/xeewreqw",
+  // ustaw na true, gdy mieszkanie zostanie wynajęte — wyłącza kalendarz
+  // i formularz, a w ich miejsce pokazuje informację o wynajęciu.
+  rented: true
 };
 
 // === I18N — teksty dynamiczne zależne od języka dokumentu ===
@@ -464,14 +467,19 @@ function initMap() {
 }
 
 async function init() {
-  await Promise.all([loadBookedSlots(), loadAvailability()]);
-  initDateInput();
-  renderSlots();
-  dateInput.addEventListener("change", renderSlots);
   initFadeIn();
   initAnalytics();
   initMap();
   initLightbox();
+
+  // Mieszkanie wynajęte — kalendarz i formularz są wyłączone w HTML,
+  // więc pomijamy całą logikę rezerwacji.
+  if (CONFIG.rented) return;
+
+  await Promise.all([loadBookedSlots(), loadAvailability()]);
+  initDateInput();
+  renderSlots();
+  dateInput.addEventListener("change", renderSlots);
   initForm();
 }
 
